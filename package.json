@@ -1,0 +1,32 @@
+{
+  "name": "xljsx",
+  "version": "0.0.2",
+  "description": "A library to describe tables using JSX",
+  "main": "lib/index.js",
+  "repository": "https://github.com/palmflip/xljsx",
+  "author": "Alexander Simonov",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "devDependencies": {
+    "@types/exceljs": "^0.5.2",
+    "@types/jest": "^23.3.10",
+    "@types/moment-timezone": "^0.5.9",
+    "@types/node": "^10.12.12",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {
+    "exceljs": "^1.6.3",
+    "moment-timezone": "^0.5.23"
+  }
+}
