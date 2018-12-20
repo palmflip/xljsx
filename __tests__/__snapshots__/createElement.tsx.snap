@@ -1,0 +1,313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cells should create cell 1`] = `
+CellElement {
+  "options": Object {
+    "id": "A",
+  },
+  "type": "cell",
+  "value": "somethingwrongtroe",
+}
+`;
+
+exports[`function component should works 1`] = `
+RowElement {
+  "cells": Array [
+    CellElement {
+      "options": Object {
+        "id": "a",
+      },
+      "type": "cell",
+      "value": "A",
+    },
+    CellElement {
+      "options": Object {
+        "id": "B",
+      },
+      "type": "cell",
+      "value": "somethingwrongtroe",
+    },
+  ],
+  "options": Object {},
+  "type": "row",
+}
+`;
+
+exports[`rowGroups should create rowGroup with rows 1`] = `
+RowGroupElement {
+  "options": Object {},
+  "rowsAndGroups": Array [
+    RowElement {
+      "cells": Array [
+        CellElement {
+          "options": Object {
+            "id": "A",
+          },
+          "type": "cell",
+          "value": "A",
+        },
+        CellElement {
+          "options": Object {
+            "id": "B",
+          },
+          "type": "cell",
+          "value": "B",
+        },
+        CellElement {
+          "options": Object {
+            "id": "C",
+          },
+          "type": "cell",
+          "value": "C",
+        },
+      ],
+      "options": Object {},
+      "type": "row",
+    },
+    RowElement {
+      "cells": Array [
+        CellElement {
+          "options": Object {
+            "id": "A",
+          },
+          "type": "cell",
+          "value": "A",
+        },
+        CellElement {
+          "options": Object {
+            "id": "B",
+          },
+          "type": "cell",
+          "value": "B",
+        },
+        CellElement {
+          "options": Object {
+            "id": "C",
+          },
+          "type": "cell",
+          "value": "C",
+        },
+      ],
+      "options": Object {},
+      "type": "row",
+    },
+  ],
+  "type": "rowGroup",
+}
+`;
+
+exports[`rows should create row with cell 1`] = `
+RowElement {
+  "cells": Array [
+    CellElement {
+      "options": Object {
+        "id": "A",
+      },
+      "type": "cell",
+      "value": "something",
+    },
+  ],
+  "options": Object {},
+  "type": "row",
+}
+`;
+
+exports[`workbooks should create workbook with worksheets 1`] = `
+Workbook {
+  "options": Object {
+    "creator": "Alexander Simonov",
+  },
+  "type": "workbook",
+  "worksheets": Array [
+    WorksheetElement {
+      "header": HeaderElement {
+        "columns": Array [
+          ColumnElement {
+            "name": "Column A",
+            "options": Object {
+              "id": "A",
+            },
+            "type": "column",
+          },
+          ColumnElement {
+            "name": "Column B",
+            "options": Object {
+              "id": "B",
+            },
+            "type": "column",
+          },
+          ColumnElement {
+            "name": "Column C",
+            "options": Object {
+              "id": "C",
+            },
+            "type": "column",
+          },
+        ],
+        "options": Object {},
+        "type": "header",
+      },
+      "options": Object {
+        "name": "Example",
+      },
+      "rowsAndGroups": Array [
+        RowElement {
+          "cells": Array [
+            CellElement {
+              "options": Object {
+                "id": "A",
+              },
+              "type": "cell",
+              "value": "CellA",
+            },
+            CellElement {
+              "options": Object {
+                "id": "B",
+              },
+              "type": "cell",
+              "value": "CellB",
+            },
+            CellElement {
+              "options": Object {
+                "id": "C",
+              },
+              "type": "cell",
+              "value": "CellC",
+            },
+          ],
+          "options": Object {},
+          "type": "row",
+        },
+      ],
+      "type": "worksheet",
+    },
+    WorksheetElement {
+      "header": HeaderElement {
+        "columns": Array [
+          ColumnElement {
+            "name": "Column A",
+            "options": Object {
+              "id": "A",
+            },
+            "type": "column",
+          },
+          ColumnElement {
+            "name": "Column B",
+            "options": Object {
+              "id": "B",
+            },
+            "type": "column",
+          },
+          ColumnElement {
+            "name": "Column C",
+            "options": Object {
+              "id": "C",
+            },
+            "type": "column",
+          },
+        ],
+        "options": Object {},
+        "type": "header",
+      },
+      "options": Object {
+        "name": "Example2",
+      },
+      "rowsAndGroups": Array [
+        RowElement {
+          "cells": Array [
+            CellElement {
+              "options": Object {
+                "id": "A",
+              },
+              "type": "cell",
+              "value": "CellA",
+            },
+            CellElement {
+              "options": Object {
+                "id": "B",
+              },
+              "type": "cell",
+              "value": "CellB",
+            },
+            CellElement {
+              "options": Object {
+                "id": "C",
+              },
+              "type": "cell",
+              "value": "CellC",
+            },
+          ],
+          "options": Object {},
+          "type": "row",
+        },
+      ],
+      "type": "worksheet",
+    },
+  ],
+}
+`;
+
+exports[`worksheets should create worksheet with row and cells 1`] = `
+WorksheetElement {
+  "header": HeaderElement {
+    "columns": Array [
+      ColumnElement {
+        "name": "Column A",
+        "options": Object {
+          "id": "A",
+        },
+        "type": "column",
+      },
+      ColumnElement {
+        "name": "Column B",
+        "options": Object {
+          "id": "B",
+        },
+        "type": "column",
+      },
+      ColumnElement {
+        "name": "Column C",
+        "options": Object {
+          "id": "C",
+        },
+        "type": "column",
+      },
+    ],
+    "options": Object {},
+    "type": "header",
+  },
+  "options": Object {
+    "name": "Example",
+  },
+  "rowsAndGroups": Array [
+    RowElement {
+      "cells": Array [
+        CellElement {
+          "options": Object {
+            "id": "A",
+          },
+          "type": "cell",
+          "value": "CellA",
+        },
+        CellElement {
+          "options": Object {
+            "id": "B",
+          },
+          "type": "cell",
+          "value": "CellB",
+        },
+        CellElement {
+          "options": Object {
+            "id": "C",
+          },
+          "type": "cell",
+          "value": "CellC",
+        },
+      ],
+      "options": Object {},
+      "type": "row",
+    },
+  ],
+  "type": "worksheet",
+}
+`;

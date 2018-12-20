@@ -11,6 +11,7 @@
     "build": "rimraf lib && tsc",
     "prepublish": "npm run build"
   },
+  "typings": "lib/typings",
   "files": [
     "lib",
     "package.json"
