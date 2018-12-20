@@ -1,6 +1,6 @@
 {
   "name": "xljsx",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A library to describe tables using JSX",
   "main": "lib/index.js",
   "repository": "https://github.com/palmflip/xljsx",
