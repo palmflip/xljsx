@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "build": "rimraf lib && tsc",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test": "jest"
   },
   "typings": "lib/typings",
   "files": [
