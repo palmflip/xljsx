@@ -1,7 +1,11 @@
 language: node_js
+
 node_js:
-  "8.12.0"
-script: npm run build
+  - "8.12.0"
+
+script:
+  - npm run build
+
 deploy:
   provider: npm
   email: "palmflip@gmail.com"
@@ -9,3 +13,6 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+
+cache:
+  yarn: true
