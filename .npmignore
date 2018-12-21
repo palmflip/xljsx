@@ -1,0 +1,10 @@
+__tests__/
+src/
+tsconfig.json
+tsconfig.common.json
+tsconfig.jest.json
+.travis.yml
+yarn.lock
+.npmignore
+.prettierrc
+jest.config.js
