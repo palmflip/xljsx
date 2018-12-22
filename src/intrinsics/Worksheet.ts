@@ -6,6 +6,7 @@ import { Node } from '../interfaces'
 
 export interface IWorksheetAttributes {
   name: string
+  defaultRowHeight?: number
 }
 
 const filterChildren = (children: Node[]): Array<RowElement | RowGroupElement> => {
@@ -49,6 +50,13 @@ export class WorksheetElement {
 
   public getName() {
     return this.options.name
+  }
+
+  public getOptions() {
+    return {
+      name: this.options.name,
+      defaultRowHeight: this.options.defaultRowHeight
+    }
   }
 
   public getRows() {

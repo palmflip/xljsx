@@ -23,8 +23,10 @@ class Excel {
 
     this.setWorkbookOptions(options)
 
-    for (const worksheet of worksheets) {
+    for (const worksheet of worksheets) {      
       const excelWorksheet = this._workbook.addWorksheet(worksheet.getName())
+
+      this.setWorksheet(excelWorksheet, worksheet)
 
       const header = worksheet.getHeader()
 
@@ -87,6 +89,14 @@ class Excel {
 
     if (cell.options.numFmt) {
       excelCell.numFmt = cell.options.numFmt
+    }
+  }
+
+  private setWorksheet(excelWorksheet: excel.Worksheet, worksheet: WorksheetElement) {
+    const options = worksheet.getOptions()
+
+    if (options.defaultRowHeight) {
+      excelWorksheet.properties.defaultRowHeight = options.defaultRowHeight
     }
   }
 
