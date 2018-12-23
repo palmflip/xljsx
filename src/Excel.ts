@@ -1,4 +1,5 @@
 import * as excel from 'exceljs'
+
 import {
   WorkbookElement,
   HeaderElement,
@@ -6,7 +7,17 @@ import {
   IWorkbookAttributes,
   RowElement,
   CellElement,
+  RowGroupElement,
 } from './intrinsics'
+
+import {
+  IWorksheetRenderContext,
+  IHeaderRenderContext,
+  IWorksheetChildRenderContext,
+  IRowGroupRenderContext,
+  IRowRenderContext,
+  ICellRenderContext,
+} from './interfaces'
 
 class Excel {
   private _workbook: excel.Workbook
@@ -15,49 +26,111 @@ class Excel {
     return new Excel(workbook)
   }
 
-  constructor(workbook: WorkbookElement) {
-    this._workbook = new excel.Workbook()
+  constructor(workbookElement: WorkbookElement) {
+    const workbook = new excel.Workbook()
 
-    const options = workbook.getOptions()
-    const worksheets = workbook.getWorksheets()
+    this._workbook = workbook
+
+    const options = workbookElement.getOptions()
+    const worksheets = workbookElement.getWorksheets()
 
     this.setWorkbookOptions(options)
 
-    for (const worksheet of worksheets) {      
-      const excelWorksheet = this._workbook.addWorksheet(worksheet.getName())
+    this.renderWorksheets(worksheets, {
+      workbook,
+      workbookElement,
+    })
+  }
 
-      this.setWorksheet(excelWorksheet, worksheet)
+  private renderWorksheets(worksheets: WorksheetElement[], context: IWorksheetRenderContext) {
+    for (const worksheet of worksheets) {
+      this.renderWorksheet(worksheet, context)
+    }
+  }
 
-      const header = worksheet.getHeader()
+  private renderWorksheet(worksheetElement: WorksheetElement, context: IWorksheetRenderContext) {
+    const { workbook } = context
 
-      this.setHeader(excelWorksheet, header)
+    const name = worksheetElement.getName()
+    const worksheet = workbook.addWorksheet(name)
 
-      for (const row of this.iterateRows(worksheet)) {
-        const excelRow = excelWorksheet.addRow([])
+    this.setWorksheet(worksheet, worksheetElement)
 
-        this.setRow(excelRow, row)
+    const header = worksheetElement.getHeader()
 
-        for (const cell of this.iterateCells(row)) {
-          const excelCell = excelRow.getCell(cell.options.id)
-          
-          this.setCell(excelCell, cell)
-        }
+    const newContext = {
+      ...context,
+      worksheetElement,
+      worksheet,
+    }
+
+    this.renderHeader(header, newContext)
+    this.renderWorksheetChildren(worksheetElement.getChildren(), newContext)
+  }
+
+  private renderHeader(headerElement: HeaderElement, context: IHeaderRenderContext) {
+    const { worksheet } = context
+
+    this.setHeader(worksheet, headerElement)
+  }
+
+  private renderWorksheetChildren(
+    children: Array<RowGroupElement | RowElement>,
+    context: IWorksheetChildRenderContext
+  ) {
+    for (const child of children) {
+      if (RowElement.isRowElement(child)) {
+        this.renderRow(child, context)
+      }
+
+      if (RowGroupElement.isRowGroupElement(child)) {
+        this.renderRowGroup(child, context)
       }
     }
   }
 
-  private *iterateRows(worksheet: WorksheetElement) {
-    const flatList = worksheet.getRows()
+  private renderRowGroup(rowGroupElement: RowGroupElement, context: IRowGroupRenderContext) {
+    for (const child of rowGroupElement.rowsAndGroups) {
+      if (RowElement.isRowElement(child)) {
+        this.renderRow(child, { ...context, rowGroupElement })
+      }
 
-    for (const row of flatList) {
-      yield row
+      if (RowGroupElement.isRowGroupElement(child)) {
+        this.renderRowGroup(child, { ...context, rowGroupElement })
+      }
     }
   }
 
-  private *iterateCells(row: RowElement) {
-    for (const cell of row.getCells()) {
-      yield cell
+  private renderRow(rowElement: RowElement, context: IRowRenderContext) {
+    const { worksheet } = context
+
+    const row = worksheet.addRow([])
+
+    this.setRow(row, rowElement)
+
+    const cellElements = rowElement.getCells()
+
+    const cellRenderContext: ICellRenderContext = {
+      ...context,
+      rowElement,
+      row,
     }
+
+    this.renderCells(cellElements, cellRenderContext)
+  }
+
+  private renderCells(cellsElements: CellElement[], context: ICellRenderContext) {
+    for (const cellElement of cellsElements) {
+      this.renderCell(cellElement, context)
+    }
+  }
+
+  private renderCell(cellElement: CellElement, context: ICellRenderContext) {
+    const { row } = context
+
+    const cell = row.getCell(cellElement.options.id)
+
+    this.setCell(cell, cellElement)
   }
 
   private setWorkbookOptions(workbookOptions: IWorkbookAttributes) {

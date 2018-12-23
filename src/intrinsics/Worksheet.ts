@@ -59,6 +59,10 @@ export class WorksheetElement {
     }
   }
 
+  public getChildren() {
+    return this.rowsAndGroups
+  }
+
   public getRows() {
     return this.flat(this.rowsAndGroups)
   }

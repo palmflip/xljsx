@@ -1,9 +1,15 @@
 import * as exceljs from 'exceljs'
-import { Node } from '../interfaces'
+import { Node, IRowRenderContext } from '../interfaces'
 
 import CellElement from './Cell'
 
-export interface IRowAttributes extends Partial<exceljs.Style> {}
+export interface IRowOnRender {
+  (rowElement: RowElement, row: exceljs.Row, context: IRowRenderContext): void
+}
+
+export interface IRowAttributes extends Partial<exceljs.Style> {
+  onRender?: IRowOnRender
+}
 
 const filterChildren = (children: Node[]): CellElement[] => {
   return children.reduce<CellElement[]>((acc, curr) => {

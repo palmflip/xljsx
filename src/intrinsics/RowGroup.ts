@@ -1,7 +1,21 @@
+import * as exceljs from 'exceljs'
+
 import RowElement from './Row'
 import { Node } from '../interfaces'
 
-export interface IRowGroupAttributes {}
+interface IRowGropOnRenderHandlerArgs {
+  worksheet: exceljs.Worksheet
+  rows: exceljs.Row[]
+  rowElements: RowElement[]
+}
+
+export interface IRowGroupOnRender {
+  (args: IRowGropOnRenderHandlerArgs): void
+}
+
+export interface IRowGroupAttributes {
+  onRender?: IRowGroupOnRender
+}
 
 const filterChildren = (children: Node[]): Array<RowElement | RowGroupElement> => {
   return children.reduce<Array<RowElement | RowGroupElement>>((acc, curr) => {
@@ -9,9 +23,7 @@ const filterChildren = (children: Node[]): Array<RowElement | RowGroupElement> =
       return [...acc, ...filterChildren(curr)]
     }
 
-    return RowElement.isRowElement(curr) || RowGroupElement.isRowGroupElement(curr)
-      ? [...acc, curr]
-      : acc
+    return RowElement.isRowElement(curr) || RowGroupElement.isRowGroupElement(curr) ? [...acc, curr] : acc
   }, [])
 }
 
