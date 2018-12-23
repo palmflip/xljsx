@@ -1,16 +1,10 @@
 import * as exceljs from 'exceljs'
 
 import RowElement from './Row'
-import { Node } from '../interfaces'
-
-interface IRowGropOnRenderHandlerArgs {
-  worksheet: exceljs.Worksheet
-  rows: exceljs.Row[]
-  rowElements: RowElement[]
-}
+import { Node, IRowGroupRenderContext, IWorksheetChildrenRenderResult } from '../interfaces'
 
 export interface IRowGroupOnRender {
-  (args: IRowGropOnRenderHandlerArgs): void
+  (rowGroupElement: RowGroupElement, result: IWorksheetChildrenRenderResult, context: IRowGroupRenderContext): void
 }
 
 export interface IRowGroupAttributes {

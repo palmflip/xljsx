@@ -1,10 +1,10 @@
 import * as exceljs from 'exceljs'
-import { Node, IRowRenderContext } from '../interfaces'
+import { Node, IRowRenderContext, IRowRenderResult } from '../interfaces'
 
 import CellElement from './Cell'
 
 export interface IRowOnRender {
-  (rowElement: RowElement, row: exceljs.Row, context: IRowRenderContext): void
+  (rowElement: RowElement, result: IRowRenderResult, context: IRowRenderContext): void
 }
 
 export interface IRowAttributes extends Partial<exceljs.Style> {

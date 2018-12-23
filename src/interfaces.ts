@@ -72,6 +72,24 @@ export interface ICellRenderContext extends IRowRenderContext {
   row: excel.Row
 }
 
+export interface ICellRenderResult {
+  cell: excel.Cell
+}
+
+export interface IRowRenderResult {
+  row: excel.Row
+  cells: excel.Cell[]
+}
+
+export interface IRowChildRenderResult extends IRowRenderResult {
+  type: 'row'
+}
+
+export interface IWorksheetChildrenRenderResult {
+  type: 'rowGroup',
+  children: Array<IWorksheetChildrenRenderResult | IRowChildRenderResult>
+}
+
 declare global {
   namespace JSX {
     interface ElementAttributesProperty {

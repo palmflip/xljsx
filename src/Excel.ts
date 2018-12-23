@@ -1,5 +1,4 @@
 import * as excel from 'exceljs'
-
 import {
   WorkbookElement,
   HeaderElement,
@@ -17,6 +16,9 @@ import {
   IRowGroupRenderContext,
   IRowRenderContext,
   ICellRenderContext,
+  ICellRenderResult,
+  IRowRenderResult,
+  IWorksheetChildrenRenderResult,
 } from './interfaces'
 
 class Excel {
@@ -76,32 +78,46 @@ class Excel {
 
   private renderWorksheetChildren(
     children: Array<RowGroupElement | RowElement>,
-    context: IWorksheetChildRenderContext
-  ) {
+    context: IWorksheetChildRenderContext | IRowGroupRenderContext
+  ): IWorksheetChildrenRenderResult {
+    const results: IWorksheetChildrenRenderResult['children'] = []
+
     for (const child of children) {
       if (RowElement.isRowElement(child)) {
-        this.renderRow(child, context)
+        const { onRender } = child.options
+        const rowRenderResult = this.renderRow(child, context)
+
+        if (onRender) {
+          onRender(child, rowRenderResult, context)
+        }
+
+        results.push({
+          type: 'row',
+          ...rowRenderResult,
+        })
       }
 
       if (RowGroupElement.isRowGroupElement(child)) {
-        this.renderRowGroup(child, context)
+        const result = this.renderWorksheetChildren(child.rowsAndGroups, { ...context, rowGroupElement: child })
+
+        if (child.options.onRender) {
+          child.options.onRender(child, result, context)
+        }
+
+        results.push({
+          type: 'rowGroup',
+          children: result.children,
+        })
       }
+    }
+
+    return {
+      type: 'rowGroup',
+      children: results,
     }
   }
 
-  private renderRowGroup(rowGroupElement: RowGroupElement, context: IRowGroupRenderContext) {
-    for (const child of rowGroupElement.rowsAndGroups) {
-      if (RowElement.isRowElement(child)) {
-        this.renderRow(child, { ...context, rowGroupElement })
-      }
-
-      if (RowGroupElement.isRowGroupElement(child)) {
-        this.renderRowGroup(child, { ...context, rowGroupElement })
-      }
-    }
-  }
-
-  private renderRow(rowElement: RowElement, context: IRowRenderContext) {
+  private renderRow(rowElement: RowElement, context: IRowRenderContext): IRowRenderResult {
     const { worksheet } = context
 
     const row = worksheet.addRow([])
@@ -116,21 +132,35 @@ class Excel {
       row,
     }
 
-    this.renderCells(cellElements, cellRenderContext)
-  }
+    const cells = this.renderCells(cellElements, cellRenderContext)
 
-  private renderCells(cellsElements: CellElement[], context: ICellRenderContext) {
-    for (const cellElement of cellsElements) {
-      this.renderCell(cellElement, context)
+    return {
+      cells: cells.map(({ cell }) => cell),
+      row,
     }
   }
 
-  private renderCell(cellElement: CellElement, context: ICellRenderContext) {
+  private renderCells(cellsElements: CellElement[], context: ICellRenderContext) {
+    return cellsElements.map(cellElement => {
+      const { onRender } = cellElement.options
+      const cell = this.renderCell(cellElement, context)
+
+      if (onRender) {
+        onRender(cellElement, cell, context)
+      }
+
+      return cell
+    })
+  }
+
+  private renderCell(cellElement: CellElement, context: ICellRenderContext): ICellRenderResult {
     const { row } = context
 
     const cell = row.getCell(cellElement.options.id)
 
     this.setCell(cell, cellElement)
+
+    return { cell }
   }
 
   private setWorkbookOptions(workbookOptions: IWorkbookAttributes) {

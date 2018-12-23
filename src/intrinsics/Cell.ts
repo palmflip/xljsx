@@ -1,8 +1,13 @@
-import { Node } from '../interfaces'
+import { Node, ICellRenderContext, ICellRenderResult } from '../interfaces'
+
+export interface ICellOnRender {
+  (cellElement: CellElement, result: ICellRenderResult, context: ICellRenderContext): void
+}
 
 export interface ICellAttributes {
   id: string
   numFmt?: string
+  onRender?: ICellOnRender
 }
 
 export class CellElement {
