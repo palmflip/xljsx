@@ -13,7 +13,7 @@ export interface ICellAttributes {
 export class CellElement {
   public type: 'cell' = 'cell'
   public options: ICellAttributes
-  public value: string | number
+  public value: string | number | null
 
   static isCellElement(instance: any): instance is CellElement {
     return instance instanceof CellElement
@@ -26,7 +26,13 @@ export class CellElement {
       (item): item is string | number => typeof item === 'string' || typeof item === 'number'
     )
 
-    this.value = filteredValues.length === 1 ? filteredValues[0] : filteredValues.join('')
+    if (filteredValues.length === 0) {
+      this.value = null
+    } else if (filteredValues.length === 1) {
+      this.value = filteredValues[0]
+    } else {
+      this.value = filteredValues.join('')
+    }
   }
 }
 
