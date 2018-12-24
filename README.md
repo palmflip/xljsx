@@ -1,8 +1,11 @@
 # xljsx
 Библиотека для построения Excel таблиц c помощью JSX.
-Создана в проецессе разработки проекта Заебаттон и используется там для построения отчётов.
 
-Под капотом работает с библиотекой `exceljs`.
+*Внимание! Нестабильная версия, не советуется использовать без желания и возможности участвовать её в развитии.*
+
+Создана в процессе разработки проекта Заебаттон и используется там для построения отчётов.
+
+Под капотом работает с библиотекой [exceljs](https://npmjs.com/packages/exceljs). 
 
 Позволяет применять компонентный подход (почти как в Реакте) для построения таблиц.
 
@@ -205,7 +208,8 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 Можно создавать компоненты, аналогичные Functional Components из React:
 
 ```tsx
-/* GroupHeader.jsx */
+/* GroupHeader.tsx */
+
 import { Xljsx, FC } from 'xljsx'
 
 interface IProps {
@@ -225,8 +229,10 @@ export const GroupHeader: FC<IProps> = props => {
     </row>
   )
 }
+```
+```tsx
+/* AwesomeWorkbook.tsx */
 
-/* AwesomeWorkbook.jsx */
 import { Xljsx, FC } from "xljsx";
 
 import { GroupHeader } from "./GroupHeader";
