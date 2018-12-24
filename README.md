@@ -34,22 +34,22 @@ import { Xljsx, render } from 'xljsx'
 
 const workbook = render(
   <workbook>
-    <worksheet name={'Hello world examples'}>
+    <worksheet name="Hello world examples">
       <header>
-        <column id={'language'}>Language</column>
-        <column id={'text'}>Text</column>
+        <column id="language">Language</column>
+        <column id="text">Text</column>
       </header>
       <row>
-        <cell id={'language'}>Russian</cell>
-        <cell id={'text'}>Привет, мир!</cell>
+        <cell id="language">Russian</cell>
+        <cell id="text">Привет, мир!</cell>
       </row>
       <row>
-        <cell id={'language'}>English</cell>
-        <cell id={'text'}>Hello world</cell>
+        <cell id="language">English</cell>
+        <cell id="text">Hello world</cell>
       </row>
       <row>
-        <cell id={'language'}>Thai</cell>
-        <cell id={'text'}>สวัสดีชาวโลก</cell>
+        <cell id="language">Thai</cell>
+        <cell id="text">สวัสดีชาวโลก</cell>
       </row>
     </worksheet>
   </workbook>
@@ -70,7 +70,7 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 
 #### Пример использования:
 ```jsx
-<workbook creator={"Alexander Simonov"}>...</workbook>
+<workbook creator="Alexander Simonov">...</workbook>
 ```
 
 ### Worksheet
@@ -103,11 +103,11 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 <workbook>
   <worksheet name="Personal Data">
     <header>
-      <column id={"name"}>Name</column>
-      <column id={"position"}>Position</column>
-      <column id={"rate"}>Rate</column>
-      <column id={"hours"}>Hours</column>
-      <column id={"total"}>Total Cost</column>
+      <column id="name">Name</column>
+      <column id="position">Position</column>
+      <column id="rate">Rate</column>
+      <column id="hours">Hours</column>
+      <column id="total">Total Cost</column>
     </header>
   </worksheet>
 </workbook>
@@ -133,25 +133,25 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 <workbook>
   <worksheet name="Personal Data">
     <header>
-      <column id={"name"}>Name</column>
-      <column id={"position"}>Position</column>
-      <column id={"rate"}>Rate</column>
-      <column id={"hours"}>Hours</column>
-      <column id={"total"}>Total Cost</column>
+      <column id="name">Name</column>
+      <column id="position">Position</column>
+      <column id="rate">Rate</column>
+      <column id="hours">Hours</column>
+      <column id="total">Total Cost</column>
     </header>
     <row>
-      <cell id={"name"}>Alexander</cell>
-      <cell id={"position"}>JavaScript Developer</cell>
-      <cell id={"rate"}>{100}</cell>
-      <cell id={"hours"}>{1.5}</cell>
-      <cell id={"total"}>{150}</cell>
+      <cell id="name">Alexander</cell>
+      <cell id="position">JavaScript Developer</cell>
+      <cell id="rate">{100}</cell>
+      <cell id="hours">{1.5}</cell>
+      <cell id="total">{150}</cell>
     </row>
     <row>
-      <cell id={"name"}>Elon Musk</cell>
-      <cell id={"position"}>Great Engineer</cell>
-      <cell id={"rate"}>{50}</cell>
-      <cell id={"hours"}>{2.5}</cell>
-      <cell id={"total"}>{125}</cell>
+      <cell id="name">Elon Musk</cell>
+      <cell id="position">Great Engineer</cell>
+      <cell id="rate">{50}</cell>
+      <cell id="hours">{2.5}</cell>
+      <cell id="total">{125}</cell>
     </row>
   </worksheet>
 </workbook>
@@ -169,33 +169,33 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 <workbook>
   <worksheet name="Personal Data">
     <header>
-      <column id={"name"}>Name</column>
-      <column id={"position"}>Position</column>
-      <column id={"rate"}>Rate</column>
-      <column id={"hours"}>Hours</column>
-      <column id={"total"}>Total Cost</column>
+      <column id="name">Name</column>
+      <column id="position">Position</column>
+      <column id="rate">Rate</column>
+      <column id="hours">Hours</column>
+      <column id="total">Total Cost</column>
     </header>
     <rowGroup>
       <row>
-        <cell id={"name"}>Best employees</cell>
-        <cell id={"position"} />
-        <cell id={"rate"} />
-        <cell id={"hours"} />
-        <cell id={"total"} />
+        <cell id="name">Best employees</cell>
+        <cell id="position" />
+        <cell id="rate" />
+        <cell id="hours" />
+        <cell id="total" />
       </row>
       <row>
-        <cell id={"name"}>Alexander</cell>
-        <cell id={"position"}>JavaScript Developer</cell>
-        <cell id={"rate"}>{100}</cell>
-        <cell id={"hours"}>{1.5}</cell>
-        <cell id={"total"}>{150}</cell>
+        <cell id="name">Alexander</cell>
+        <cell id="position">JavaScript Developer</cell>
+        <cell id="rate">{100}</cell>
+        <cell id="hours">{1.5}</cell>
+        <cell id="total">{150}</cell>
       </row>
       <row>
-        <cell id={"name"}>Elon Musk</cell>
-        <cell id={"position"}>Great Engineer</cell>
-        <cell id={"rate"}>{50}</cell>
-        <cell id={"hours"}>{2.5}</cell>
-        <cell id={"total"}>{125}</cell>
+        <cell id="name">Elon Musk</cell>
+        <cell id="position">Great Engineer</cell>
+        <cell id="rate">{50}</cell>
+        <cell id="hours">{2.5}</cell>
+        <cell id="total">{125}</cell>
       </row>
     </rowGroup>
   </worksheet>
@@ -221,11 +221,11 @@ export const GroupHeader: FC<IProps> = props => {
 
   return 
     <row>
-      <cell id={"name"}>{name}</cell>
-      <cell id={"position"} />
-      <cell id={"rate"} />
-      <cell id={"hours"} />
-      <cell id={"total"} />
+      <cell id="name">{name}</cell>
+      <cell id="position" />
+      <cell id="rate" />
+      <cell id="hours" />
+      <cell id="total" />
     </row>
   )
 }
@@ -242,27 +242,27 @@ const Workbook: FC = () => {
     <workbook>
       <worksheet name="Personal Data">
         <header>
-          <column id={"name"}>Name</column>
-          <column id={"position"}>Position</column>
-          <column id={"rate"}>Rate</column>
-          <column id={"hours"}>Hours</column>
-          <column id={"total"}>Total Cost</column>
+          <column id="name">Name</column>
+          <column id="position">Position</column>
+          <column id="rate">Rate</column>
+          <column id="hours">Hours</column>
+          <column id="total">Total Cost</column>
         </header>
         <rowGroup>
-          <GroupHeader name={"Best employees"} />
+          <GroupHeader name="Best employees" />
           <row>
-            <cell id={"name"}>Alexander</cell>
-            <cell id={"position"}>JavaScript Developer</cell>
-            <cell id={"rate"}>{100}</cell>
-            <cell id={"hours"}>{1.5}</cell>
-            <cell id={"total"}>{150}</cell>
+            <cell id="name">Alexander</cell>
+            <cell id="position">JavaScript Developer</cell>
+            <cell id="rate">{100}</cell>
+            <cell id="hours">{1.5}</cell>
+            <cell id="total">{150}</cell>
           </row>
           <row>
-            <cell id={"name"}>Elon Musk</cell>
-            <cell id={"position"}>Great Engineer</cell>
-            <cell id={"rate"}>{50}</cell>
-            <cell id={"hours"}>{2.5}</cell>
-            <cell id={"total"}>{125}</cell>
+            <cell id="name">Elon Musk</cell>
+            <cell id="position">Great Engineer</cell>
+            <cell id="rate">{50}</cell>
+            <cell id="hours">{2.5}</cell>
+            <cell id="total">{125}</cell>
           </row>
         </rowGroup>
       </worksheet>
