@@ -94,9 +94,9 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 ### Сolumn
 `<column id='string'>{/* ... */}</column>`
 
-Представляет из себя колонку таблицы, используется только внутри элемента `header`.
+Представляет из себя колонку таблицы, используется только внутри элемента `header`. 
 
-Обязательный атрибут `id`.
+Аналог `<th>...</th>` из HTML. Обязательный атрибут `id`.
 
 #### Пример использования:
 ```jsx
@@ -124,7 +124,7 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 ### Cell
 `<cell id='string'>{/* string | number | null */}</row>`
 
-Представляет из себя ячейку таблицы, аналог `<tr>...</tr>` из HTML.
+Представляет из себя ячейку таблицы, аналог `<td>...</td>` из HTML.
 
 Используется только внутри `row`, обязательный атрибут `id`.
 
@@ -219,7 +219,7 @@ interface IProps {
 export const GroupHeader: FC<IProps> = props => {
   const { name = 'Best employees' } = props
 
-  return 
+  return (
     <row>
       <cell id="name">{name}</cell>
       <cell id="position" />
