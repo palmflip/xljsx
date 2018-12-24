@@ -18,10 +18,8 @@ npm install xljsx
 {
   "compilerOptions": {
     "jsxFactory": "Xljsx.create",
-    "jsx": "react",
-    ...
-  },
-  ...
+    "jsx": "react"
+  }
 }
 ```
 
@@ -201,3 +199,71 @@ workbook.xls.writeFile('demo.xlsx').then(() => {
 </workbook>
 
 ```
+
+## Компоненты
+
+Можно создавать компоненты, аналогичные Functional Components из React:
+
+```tsx
+/* GroupHeader.jsx */
+import { Xljsx, FC } from 'xljsx'
+
+interface IProps {
+  name?: string
+}
+
+export const GroupHeader: FC<IProps> = props => {
+  const { name = 'Best employees' } = props
+
+  return 
+    <row>
+      <cell id={"name"}>{name}</cell>
+      <cell id={"position"} />
+      <cell id={"rate"} />
+      <cell id={"hours"} />
+      <cell id={"total"} />
+    </row>
+  )
+}
+
+/* AwesomeWorkbook.jsx */
+import { Xljsx, FC } from "xljsx";
+
+import { GroupHeader } from "./GroupHeader";
+
+const Workbook: FC = () => {
+  return (
+    <workbook>
+      <worksheet name="Personal Data">
+        <header>
+          <column id={"name"}>Name</column>
+          <column id={"position"}>Position</column>
+          <column id={"rate"}>Rate</column>
+          <column id={"hours"}>Hours</column>
+          <column id={"total"}>Total Cost</column>
+        </header>
+        <rowGroup>
+          <GroupHeader name={"Best employees"} />
+          <row>
+            <cell id={"name"}>Alexander</cell>
+            <cell id={"position"}>JavaScript Developer</cell>
+            <cell id={"rate"}>{100}</cell>
+            <cell id={"hours"}>{1.5}</cell>
+            <cell id={"total"}>{150}</cell>
+          </row>
+          <row>
+            <cell id={"name"}>Elon Musk</cell>
+            <cell id={"position"}>Great Engineer</cell>
+            <cell id={"rate"}>{50}</cell>
+            <cell id={"hours"}>{2.5}</cell>
+            <cell id={"total"}>{125}</cell>
+          </row>
+        </rowGroup>
+      </worksheet>
+    </workbook>
+  );
+};
+
+```
+
+Пример не показывает, но `props.children` работает так же как в Реакте.
