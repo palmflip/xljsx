@@ -21,7 +21,7 @@ export type Node = Child | boolean | null | undefined
 export interface FC<P = {}> {
   (
     props: P & {
-      children?: Node[]
+      children?: any
     }
   ): Node
 }
