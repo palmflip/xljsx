@@ -15,7 +15,7 @@ import {
 } from './intrinsics'
 
 export type Text = string | number
-export type Child = { type: keyof JSX.IntrinsicElements } | Text
+export type Child = { type: keyof Xljsx.JSX.IntrinsicElements } | Text
 export type Node = Child | boolean | null | undefined
 
 export interface FC<P = {}> {
@@ -86,12 +86,12 @@ export interface IRowChildRenderResult extends IRowRenderResult {
 }
 
 export interface IWorksheetChildrenRenderResult {
-  type: 'rowGroup',
+  type: 'rowGroup'
   children: Array<IWorksheetChildrenRenderResult | IRowChildRenderResult>
 }
 
 declare global {
-  namespace JSX {
+  namespace Xljsx.JSX {
     interface ElementAttributesProperty {
       props: {}
     }
