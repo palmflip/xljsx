@@ -13,7 +13,7 @@
   },
   "typings": "lib/typings",
   "devDependencies": {
-    "@types/exceljs": "^0.5.2",
+    "@types/exceljs": "0.5.2",
     "@types/jest": "^23.3.10",
     "@types/moment-timezone": "^0.5.9",
     "@types/node": "^10.12.12",
@@ -22,7 +22,7 @@
     "typescript": "^3.2.1"
   },
   "dependencies": {
-    "exceljs": "^1.6.3",
+    "exceljs": "1.8.0",
     "moment-timezone": "^0.5.23"
   }
 }
